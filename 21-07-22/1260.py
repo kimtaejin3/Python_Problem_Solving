@@ -7,6 +7,7 @@ from collections import deque
 n,m,v = map(int,input().split())
 
 graph = [[] for _ in range(n+1)]
+# graph = [[]] * (n+1)
 visited = [False] * (n+1)
 
 # 그래프 만들기(인접리스트 방식)
@@ -14,6 +15,10 @@ for i in range(m):
   v1,v2 = map(int,input().split())
   graph[v1].append(v2)
   graph[v2].append(v1)
+
+for i in range(n):
+  if len(graph[i]) > 1:
+    graph[i].sort()
 
 def dfs(v,visited,graph):
   visited[v] = True
@@ -34,15 +39,12 @@ def bfs(node):
         queue.append(i)
         visited[i] = True
 
-print('====dfs결과====')
 dfs(v,visited,graph) #굳이 매개변수 안넘겨도 되긴함.
 print()
 
 visited = [False] * (n+1)
 
-print('====bfs결과====')
 bfs(v) #굳이 매개변수 안넘김.
-print()
 
   
 
